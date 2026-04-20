@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"  data-bs-core="modern">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZoteRAG</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <main>
+        <h1>ZoteRag</h1>
+        <p>Please enter your Zotero username and API key:
+        <p>
+        <form action="/get_url/" method="post">
+            <div>
+                <label for="username">Enter your userID: </label>
+                <input type="text" name="userid" id="userid" required />
+            </div>
+            <div>
+                <label for="apikey">Enter your API key: </label>
+                <input type="text" name="apikey" id="apikey" required />
+            </div>
+            <div class="form-example">
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

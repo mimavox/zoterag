@@ -1,0 +1,9 @@
+[project]
+name = "zoterag"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.136.0",
+    "pyzotero>=1.11.0",
+    "cryptography>=41.0.0",
+]
