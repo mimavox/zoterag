@@ -54,7 +54,31 @@ def lib(token: str):
     
     try:
         zot = Zotero(userid, "user", apikey)
-        items = zot.everything(zot.items())
+        # get all items with fulltext and attachments
+        # zot.add_parameters(fulltext=True, attachments=True)
+
+        items_html = ""
+
+        # Fetch everything (use with caution on huge libraries)
+        all_items = zot.everything(zot.items(q='machine learning'))
+
+        # Separate parents and notes
+        parents = {i['key']: i for i in all_items if i['data']['itemType'] != 'note'}
+        notes = [i for i in all_items if i['data']['itemType'] == 'note']
+
+        # Map notes to their parents
+        for note in notes:
+            parent_key = note['data'].get('parentItem')
+            if parent_key in parents:
+                print(f"Note for '{parents[parent_key]['data']['title']}':")
+                print(f" > {note['data']['note']}")
+
+
+
+
+
+
+        #items = zot.everything(zot.items())
         '''
         items_html = "<ul>"
         for item in items:
@@ -63,8 +87,8 @@ def lib(token: str):
         '''
         items_html = ""
         for item in items:
-            title = item['data'].get('title', 'No Title')
-            items_html += f"<div class='item'><h3>{title}</h3></div>"
+            #title = item['data'].get('title', 'No Title')
+            items_html += f"<article>{item}</article>"
 
         library_html = (BASE_DIR / "lib.html").read_text(encoding="utf-8")
         library_html = library_html.replace("{{items}}", items_html)
